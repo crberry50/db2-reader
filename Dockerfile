@@ -3,15 +3,17 @@
 # This will build for the ppc64le architecture **only**.
 
 # FROM quay.io/centos/ppc64le:centos7
-FROM docker.io/ppc64le/centos:7
-# FROM ubi7/ubi:7.9 # requires an account with the Red Hat container registry
+# FROM docker.io/ppc64le/centos:7
+FROM rhel7:7.6
+# requires an account with the Red Hat container registry
 
 LABEL "maintainer"="Andrew Laidlaw [andrew.laidlaw@uk.ibm.com]"
 LABEL "version"="1.1"
 LABEL "description"="Microservice to present data in IBM Db2 as API endpoints."
 
 # runtime support to enable npm build capabilities
-RUN yum -y install libstdc++ make gcc-c++ numactl-devel
+RUN yum -y install libstdc++ make gcc-c++ 
+        # numactl-devel
 
 # Required to install Python3 on CentOS7
 RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum -y install python36

@@ -4,7 +4,8 @@
 
 # FROM quay.io/centos/ppc64le:centos7
 # FROM docker.io/ppc64le/centos:7
-FROM rhel7:7.9
+# FROM rhel7:7.9
+FROM registry.access.redhat.com/ubi7/ubi:latest
 # requires an account with the Red Hat container registry
 
 LABEL "maintainer"="Andrew Laidlaw [andrew.laidlaw@uk.ibm.com]"

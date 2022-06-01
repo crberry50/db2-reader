@@ -12,7 +12,7 @@ LABEL "version"="1.1"
 LABEL "description"="Microservice to present data in IBM Db2 as API endpoints."
 
 # runtime support to enable npm build capabilities
-RUN yum -y install libstdc++ make gcc-c++ 
+RUN yum update -y && yum -y install libstdc++ make gcc-c++ 
         # numactl-devel
 
 # Required to install Python3 on CentOS7

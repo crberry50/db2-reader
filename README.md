@@ -6,7 +6,7 @@ This application presents a number of API endpoints over http to read data from 
 
 Host details and user credentials are provided as environment variables. When deploying using Red Hat OpenShift Container Platform these should be provided within a key/value secret to be passed into the microservice pod. When deployed through other means the environment variables listed below need to be passed to the runtime.
 
-The data to use comes from the sample dataset available with the Db2 installer, which includes small scale tables of data based on common business data.
+The data to use comes from the sample dataset available with the Db2 installer, which includes small scale tables of data based on common business data. To create and populate this database in an existing Db2 installation, run the command `db2sampl`.
 
 ## Endpoints
 `/getProducts` provides a JSON object where `data` is an array of products with relevant information.
@@ -37,3 +37,6 @@ The following environment variables need to be passed to the running instance of
 ## Requirements
 The system or OpenShift cluster that is running this code must have network connectivity to the server and port running IBM Db2.
 The Db2 database manager must be set up and running the SAMPLE database prepopulated with data.
+
+## Version
+This is version 1.3.

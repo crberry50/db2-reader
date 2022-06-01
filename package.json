@@ -6,7 +6,7 @@
   },
   "private": true,
   "dependencies": {
-    "ibm_db": "^2.6.0",
+    "ibm_db": "^2.8.1",
     "express": "^4.17.1",
     "async": "^2.6.2"
   }

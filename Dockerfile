@@ -5,7 +5,7 @@
 # FROM quay.io/centos/ppc64le:centos7
 # FROM docker.io/ppc64le/centos:7
 # FROM rhel7:7.9
-FROM registry.access.redhat.com/ubi7/ubi:latest
+FROM registry.access.redhat.com/ubi8/ubi:latest
 # requires an account with the Red Hat container registry
 
 LABEL "maintainer"="Andrew Laidlaw [andrew.laidlaw@uk.ibm.com]"
@@ -25,12 +25,12 @@ RUN yum update -y && yum -y install libstdc++ make gcc-c++ numa-devel
 #        && yum -y install libxlc
 
 # install most up-to-date LTS node for ppc64le
-# RUN cd /usr/local \
-#       && curl -sL https://nodejs.org/dist/v16.14.2/node-v16.14.2-linux-ppc64le.tar.gz > node-v16.14.2-Linux-ppc64le.tar.gz \
-#       && tar --strip-components 1 -xf node-v16.14.2-Linux-ppc64le.tar.gz
 RUN cd /usr/local \
-       && curl -sL https://nodejs.org/dist/v14.17.5/node-v14.17.5-linux-ppc64le.tar.gz > node-v14.17.5-linux-ppc64le.tar.gz \
-       && tar --strip-components 1 -xf node-v14.17.5-linux-ppc64le.tar.gz
+      && curl -sL https://nodejs.org/dist/v16.14.2/node-v16.14.2-linux-ppc64le.tar.gz > node-v16.14.2-Linux-ppc64le.tar.gz \
+      && tar --strip-components 1 -xf node-v16.14.2-Linux-ppc64le.tar.gz
+# RUN cd /usr/local \
+#        && curl -sL https://nodejs.org/dist/v14.17.5/node-v14.17.5-linux-ppc64le.tar.gz > node-v14.17.5-linux-ppc64le.tar.gz \
+#        && tar --strip-components 1 -xf node-v14.17.5-linux-ppc64le.tar.gz
 
 # install required node.js pacakges using npm
 COPY package*.json ./

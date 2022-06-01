@@ -2,12 +2,16 @@
 //@author Andrew Laidlaw
 //@version 1.0
 
+// Pull in required supporting pacakges and set up Express application
 var express=require('express');
 var app=express();
-var path=require('path');
 var bodyParser=require('body-parser');
 const ibmdb = require('ibm_db');
-const async = require('async');
+
+// Set the port to listen on for our web server
+app.set('port',process.env.PORT || 8080)
+
+// Configure the Express application (app) options
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function (req, res, next) {
@@ -15,14 +19,6 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
-// Pull in environment variables
-const DB_DATABASE = process.env.db_database;
-const DB_HOSTNAME = process.env.db_hostname;
-const DB_PORT = process.env.db_port;
-const DB_UID = process.env.db_uid;
-const DB_PWD = process.env.db_pwd;
-const DB_SCHEMA = process.env.db_schema;
 
 // Setup the endpoint for the Db2 database we are connecting to
 let connStr = "DATABASE="+process.env.DB_DATABASE+";HOSTNAME="+process.env.DB_HOSTNAME+";PORT="+process.env.DB_PORT+";PROTOCOL=TCPIP;UID="+process.env.DB_UID+";PWD="+process.env.DB_PWD+";";
@@ -47,14 +43,18 @@ app.get('/getProducts', function(request, response) {
       console.log(err);
       return response.json({success:-1, message:err});
     }
+    // Defined SQL query is run against the database
+    // The returned data is in JSON format by default
     conn.query("SELECT * FROM "+process.env.DB_SCHEMA+".PRODUCT;", function (err,data) {
+      // Handle errors connecting to database
       if (err){
         console.log(err);
         return response.json({success:-2,message:err});
       }
       conn.close(function () {
         console.log("Response provided");
-        return response.json({success:1, message:'Data Received', data:data});
+        // Return a JSON object with the returned data
+        return response.json({success:1, message:'data received', data:data});
       });
     })
   })
@@ -76,7 +76,7 @@ app.get('/getEmployee', function(request, response) {
       }
       conn.close(function () {
         console.log("Response provided");
-        return response.json({success:1, message:'Data Received', data:data});
+        return response.json({success:1, message:'data received', data:data});
       });
     })
   })
@@ -98,7 +98,7 @@ app.get('/getEmployees', function(request, response) {
       }
       conn.close(function () {
         console.log("Response provided");
-        return response.json({success:1, message:'Data Received!', data:data});
+        return response.json({success:1, message:'data received', data:data});
       });
     })
   })
@@ -121,7 +121,7 @@ app.get('/getAllEmployees', function(request, response) {
       }
       conn.close(function () {
         console.log("Response provided");
-        return response.json({success:1, message:'Data Received!', data:data});
+        return response.json({success:1, message:'data received', data:data});
       });
     })
   })
@@ -141,13 +141,13 @@ app.get('/getEmps', function(request, response) {
 
     conn.close(function () {
       console.log("Response provided");
-      return response.json({success:1, message:'Data Received!', data:output});
+      return response.json({success:1, message:'data received', data:output});
     })
   })
 })
 
 // Start the server listening for clients
-app.listen(8080, function(){
-    console.log("Server is listening on port 8080");
-    console.log('Connection string is: '+connStr)
+app.listen(app.get('port'), function(){
+    console.log("Server is listening on port " + app.get('port'));
+    console.log('Db2 connection string is: '+ connStr)
 })

@@ -5,7 +5,8 @@
 # FROM quay.io/centos/ppc64le:centos7
 # FROM docker.io/ppc64le/centos:7
 # FROM rhel7:7.9
-FROM registry.access.redhat.com/ubi8/ubi:latest
+# FROM registry.access.redhat.com/ubi8/ubi:latest
+FROM quay.io/andrewlaidlaw/centos:7
 # requires an account with the Red Hat container registry
 
 LABEL "maintainer"="Andrew Laidlaw [andrew.laidlaw@uk.ibm.com]"
@@ -13,7 +14,7 @@ LABEL "version"="1.1"
 LABEL "description"="Microservice to present data in IBM Db2 as API endpoints."
 
 # runtime support to enable npm build capabilities
-RUN yum update -y && yum -y install make gcc-c++ python3
+RUN yum update -y && yum -y install make gcc-c++ python3 numactl-devel
         # numactl-devel libstdc++
 # RUN yum repolist
 RUN yum search numa

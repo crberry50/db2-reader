@@ -6,7 +6,7 @@
 FROM quay.io/andrewlaidlaw/centos:7
 
 LABEL "maintainer"="Andrew Laidlaw [andrew.laidlaw@uk.ibm.com]"
-LABEL "version"="1.2"
+LABEL "version"="1.3"
 LABEL "description"="Microservice to present data in IBM Db2 sample database as API endpoints."
 
 # runtime support to enable npm build capabilities

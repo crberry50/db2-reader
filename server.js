@@ -1,6 +1,6 @@
 //Server for API call to Db2 database
 //@author Andrew Laidlaw
-//@version 1.0
+//@version 1.3
 
 // Pull in required supporting pacakges and set up Express application
 var express=require('express');

@@ -37,3 +37,6 @@ The following environment variables need to be passed to the running instance of
 ## Requirements
 The system or OpenShift cluster that is running this code must have network connectivity to the server and port running IBM Db2.
 The Db2 database manager must be set up and running the SAMPLE database prepopulated with data.
+
+## Version
+This is version 1.3.

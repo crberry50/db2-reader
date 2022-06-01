@@ -17,14 +17,13 @@ LABEL "description"="Microservice to present data in IBM Db2 as API endpoints."
 RUN yum update -y && yum -y install make gcc-c++ python3 numactl-devel
         # numactl-devel libstdc++
 # RUN yum repolist
-RUN yum search numa
 
 # Required to install Python3 on CentOS7
-# RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum search python && yum -y install python
+# RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum search python && yum -y install python36
 
 # XLC runtime support - required by ibm_db node package
-# RUN curl -sL http://public.dhe.ibm.com/software/server/POWER/Linux/xl-compiler/eval/ppc64le/rhel7/ibm-xl-compiler-eval.repo > /etc/yum.repos.d/xl-compilers.repo \
-#        && yum -y install libxlc
+RUN curl -sL http://public.dhe.ibm.com/software/server/POWER/Linux/xl-compiler/eval/ppc64le/rhel7/ibm-xl-compiler-eval.repo > /etc/yum.repos.d/xl-compilers.repo \
+       && yum -y install libxlc
 
 # install most up-to-date LTS node for ppc64le
 RUN cd /usr/local \

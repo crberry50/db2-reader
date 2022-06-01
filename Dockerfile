@@ -18,7 +18,7 @@ RUN yum update -y && yum -y install libstdc++ make gcc-c++
 RUN yum repolist
 
 # Required to install Python3 on CentOS7
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum repolist && yum -y install python3
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum search python && yum -y install python
 
 # XLC runtime support - required by ibm_db node package
 RUN curl -sL http://public.dhe.ibm.com/software/server/POWER/Linux/xl-compiler/eval/ppc64le/rhel7/ibm-xl-compiler-eval.repo > /etc/yum.repos.d/xl-compilers.repo \

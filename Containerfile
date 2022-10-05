@@ -13,8 +13,8 @@ LABEL "description"="Microservice to present data in IBM Db2 sample database as 
 RUN yum update -y && yum -y install make gcc-c++ python3 numactl-devel
 
 # XLC runtime support - required by ibm_db node package
-RUN curl -sL https://public.dhe.ibm.com/software/server/POWER/Linux/xl-compiler/eval/ppc64le/rhel7/ibm-xl-compiler-eval.repo > xl.repo \
-       && sed -i "s/http/https/g" xl.repo > /etc/yum.repos.d/xl-compilers.repo \
+RUN curl -sL https://public.dhe.ibm.com/software/server/POWER/Linux/xl-compiler/eval/ppc64le/rhel7/ibm-xl-compiler-eval.repo | sed "s/http/https/g" > /etc/yum.repos.d/xl-compilers.repo \
+       && yum update \
        && yum -y install libxlc
 
 # install v14 LTS node.js for ppc64le
